@@ -1,18 +1,74 @@
 import { Button } from "@mui/material";
 import useProd from "../../hooks/useProd";
-
+import { Bounce, toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import 'react-toastify/dist/ReactToastify.css';
 const Review = () => {
-    const { step, setStep } = useProd()
+    const { step, setStep, productInfo, setProducts, setProductInfo } = useProd()
+    const navigate = useNavigate()
+
+    const handleSubmit = () => {
+        setProducts(productInfo)
+        setProductInfo({})
+        toast.success('🦄 Wow so easy!', {
+            position: "top-center",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+            transition: Bounce
+        });
+
+        setTimeout(() => {
+            navigate('/')
+        }, 2000);
+
+    }
     return (
-        <div>
-            <div className=" bg-[#1776D2] my-10 text-white">
-                <h3>hi sir</h3>
+        <div className="w-full mx-auto lg:w-1/2">
+            <div className="border border-blue-400 rounded-lg my-10 p-10">
+                <h3 className="text-2xl text-center mb-5 font-semibold ">Please have a look before submitting</h3>
+                <div>
+                    <div className="space-y-3 grid">
+                        <h3 className="font-semibold text-lg">Product Title: <span>{productInfo?.title}</span></h3>
+                        <h3 className="font-semibold text-lg">Category: <span>{productInfo?.category}</span></h3>
+                        <h3 className="font-semibold text-lg">Regular Price: <span>{productInfo?.regPrice}</span></h3>
+                        <h3 className="font-semibold text-lg">Extra Price: <span>{productInfo?.extraPrice}</span></h3>
+                        <h3 className="font-semibold text-lg">Tax Amount: <span>{productInfo?.tax}</span></h3>
+                        <h3 className="font-semibold text-lg">Weight: <span>{productInfo?.weight}</span></h3>
+                        <h3 className="font-semibold text-lg">Height: <span>{productInfo?.height}</span></h3>
+                        <h3 className="font-semibold text-lg">Length: <span>{productInfo?.length}</span></h3>
+                        <h3 className="font-semibold text-lg">Width: <span>{productInfo?.width}</span></h3>
+                        <h3 className="font-semibold text-lg">Total Stock: <span>{productInfo?.totalStock}</span></h3>
+                    </div>
+                    <div className="flex flex-wrap my-5 gap-5">
+                        <h3 className="font-semibold text-xl">Images:</h3>
+                        {productInfo?.image?.map((singleImage, i) => <img className="w-40 h-40 object-cover" key={i} src={singleImage}></img>)}
+                    </div>
+
+                </div>
+                <div className="flex justify-end gap-5">
+                    <Button
+                        onClick={() => setStep(step - 1)} variant="contained">Back</Button>
+                    <Button onClick={handleSubmit} variant="contained">Submit</Button>
+                </div>
             </div>
-            <div className="flex justify-end gap-5">
-            <Button
-                onClick={() => setStep(step - 1)} variant="contained">Back</Button>
-            <Button variant="contained">Submit</Button>
-            </div>
+            <ToastContainer
+                position="top-center"
+                autoClose={5000}
+                hideProgressBar={false}
+                newestOnTop={false}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss
+                draggable
+                pauseOnHover
+                theme="light"
+                transition:Bounce
+            />
         </div>
     );
 };

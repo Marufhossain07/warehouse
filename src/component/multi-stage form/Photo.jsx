@@ -30,7 +30,6 @@ const Photo = () => {
             ...productInfo,
             image: image
         });
-        console.log(productInfo);
 
     }
     useEffect(()=>{
@@ -42,7 +41,7 @@ const Photo = () => {
         <div>
             <div className="rounded-lg border my-5 border-blue-500 p-10">
                 <h3 className="font-semibold mb-5 text-2xl">Add Photo:</h3>
-                <div className="flex gap-5 mb-5">
+                <div className="flex flex-wrap gap-5 mb-5">
                     {
                         image?.map((singleImage, i) => <img className="w-40 h-40 object-cover" key={i} src={singleImage}></img>)
                     }

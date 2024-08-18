@@ -22,7 +22,6 @@ const ProductDetails = () => {
         <div>
             <div className="rounded-lg border my-5 border-blue-500 p-10">
                 <h3 className="font-semibold mb-5 text-2xl">Product Info:</h3>
-                {/* <TextField className="border border-[#1776D2]" id="outlined-basic" label="Product Title" variant="outlined" /> */}
                 <form onSubmit={handleSubmit(storeData)}>
                     <Grid container spacing={3}>
                         <FormGrid item xs={12} md={6}>

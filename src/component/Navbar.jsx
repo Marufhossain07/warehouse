@@ -14,12 +14,12 @@ import { Link } from 'react-router-dom';
 
 const pages = [
     {
-        title: 'Add Product',
+        title: 'Products',
         path: '/'
     },
     {
-        title: 'Products',
-        path: '/products'
+        title: 'Add Product',
+        path: '/add-product'
     }
 ];
 
@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
 
     return (
         <AppBar position="static">
-            <Container maxWidth="xl">
+            <Container  className='container mx-auto' maxWidth="xl">
                 <Toolbar disableGutters>
                     <AdbIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
                     <Typography

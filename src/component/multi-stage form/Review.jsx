@@ -4,13 +4,15 @@ import { Bounce, toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import 'react-toastify/dist/ReactToastify.css';
 const Review = () => {
-    const { step, setStep, productInfo, setProducts, setProductInfo } = useProd()
+    const { step, setStep, productInfo, products, setProducts, setProductInfo } = useProd()
     const navigate = useNavigate()
 
     const handleSubmit = () => {
-        setProducts(productInfo)
+
+        const newProducts = [...products,productInfo]
+        setProducts(newProducts)
         setProductInfo({})
-        toast.success('🦄 Wow so easy!', {
+        toast.success('Product has been successfully added', {
             position: "top-center",
             autoClose: 2000,
             hideProgressBar: false,
@@ -22,9 +24,12 @@ const Review = () => {
             transition: Bounce
         });
 
+
         setTimeout(() => {
             navigate('/')
+            setStep(0)
         }, 2000);
+        
 
     }
     return (
@@ -51,9 +56,9 @@ const Review = () => {
 
                 </div>
                 <div className="flex justify-end gap-5">
-                    <Button
+                    <Button 
                         onClick={() => setStep(step - 1)} variant="contained">Back</Button>
-                    <Button onClick={handleSubmit} variant="contained">Submit</Button>
+                    <Button className="disabled:bg-gray-500" onClick={handleSubmit} variant="contained">Submit</Button>
                 </div>
             </div>
             <ToastContainer

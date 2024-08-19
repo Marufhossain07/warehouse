@@ -4,6 +4,7 @@ import { DataGrid } from '@mui/x-data-grid';
 import Menu from '@mui/material/Menu';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import React, { useState } from "react";
+import { PieChart } from '@mui/x-charts/PieChart';
 const Products = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const [openModal, setOpenModal] = React.useState(false);
@@ -16,22 +17,22 @@ const Products = () => {
 
     const handleCloseModal = () => setOpenModal(false);
 
-    const { products,setProducts } = useProd()
+    const { products, setProducts } = useProd()
     console.log(products);
     const style = {
         position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        width: {xs:'80%' ,lg:'50%'},
+        width: { xs: '80%', lg: '50%' },
         bgcolor: 'background.paper',
         border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     };
 
-    const handleDelete = (title)=>{
-        const updatedProducts = products.filter(product=> product.title !== title)
+    const handleDelete = (title) => {
+        const updatedProducts = products.filter(product => product.title !== title)
         setProducts(updatedProducts)
         setAnchorEl(null);
     }
@@ -79,7 +80,7 @@ const Products = () => {
                             }}
                         >
                             <MenuItem onClick={() => handleOpen(params.row)}>View</MenuItem>
-                            <MenuItem onClick={()=> handleDelete(params.row.title)}>Delete</MenuItem>
+                            <MenuItem onClick={() => handleDelete(params.row.title)}>Delete</MenuItem>
                         </Menu>
                     </div>
                 );
@@ -116,6 +117,24 @@ const Products = () => {
                         columns={columns}
                     />
                 </Box>
+            </div>
+            <div>
+                <h3 className="text-3xl font-semibold text-center my-10">Products Price Chart</h3>
+
+                <div className="flex justify-center">
+                <PieChart
+                    series={[
+                        {
+                            data: products.map(product=>({
+                                 title: product.title, value: product.regPrice, label: product.title 
+                            })),
+                            
+                        },
+                    ]}
+                    width={400}
+                    height={200}
+                />
+                </div>
             </div>
             <Modal
                 open={openModal}

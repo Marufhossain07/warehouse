@@ -1,8 +1,20 @@
-# React + Vite
+# Warehouse
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Live Site URL:** [Warehouse](https://warehouse-task90.netlify.app/)
 
-Currently, two official plugins are available:
+**Project Overview:** Warehouse helps users to add various products easily and they can see their products in the list. Also there is a pie chart to know about the most highest and lowest prices products that are in the list
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+   ## Technologies
+- Frontend: React, Router DOM, Tailwind CSS, Material UI
+
+## To Run This Project Locally,follow these steps
+
+```sh
+git clone [use my code link]
+```
+```sh
+npm i
+```
+```sh
+npm run dev
+```
